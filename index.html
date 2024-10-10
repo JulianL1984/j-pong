@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PONG GAME</title>
+
+  <!-- Preconectar fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <!-- Enlace al archivo de estilos CSS -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Enlace al archivo de JavaScript del juego -->
+  <script src="sketch.js" defer></script>
+</head>
+<body>
+  <h1>PONG GAME</h1>
+  <p>Presiona <strong>Espacio</strong> para comenzar o pausar el juego.</p>
+  <p>Usa las flechas <strong>arriba</strong> y <strong>abajo</strong> para moverte.</p>
+  
+  <!-- Contenedor para los marcadores -->
+  <div class="marcadores">
+    <div class="score"></div>
+    <div class="times-won"></div>
+  </div>
+
+  <!-- El canvas de HTML5 -->
+  <canvas id="gameCanvas" width="800" height="400"></canvas>
+</body>
+</html>

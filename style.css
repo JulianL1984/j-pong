@@ -1,0 +1,103 @@
+/* Estilo general del body */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('assets/imagen1.png'); /* Fondo del espacio de juego */
+    background-size: cover;
+    background-position: center;
+    color: Violet;
+    font-family: 'Press Start 2P', system-ui;
+    text-align: center;
+  }
+  
+  /* Estilo para el título */
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  /* Estilo para los párrafos */
+  p {
+    font-size: 1rem;
+    margin-top: 5px;
+  }
+  
+  /* Contenedor para los marcadores */
+  .marcadores {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .score {
+    font-size: 20px;
+    color: rgb(51, 255, 0); /* Color verde */
+    text-align: center;
+    margin-top: 5px;
+}
+
+.times-won {
+    font-size: 10px;
+    color: red; /* Color rojo */
+    text-align: center;
+    margin-top: 5px;
+}
+  /* Estilo para el canvas (zona de juego) */
+  canvas {
+    margin: 6px;      /* Margen de 6px alrededor del canvas */
+    border: 2px solid white; /* Borde blanco de 2px alrededor del canvas */
+    background-color: #000; /* Fondo negro en el canvas */
+  }
+  
+  /* Estilo para el mensaje de fin de juego 
+  .fin-juego {
+    font-size: 30px;
+    color: yellow;
+    background-color: black;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    text-align: center;
+  }*/
+  
+  /* Ajuste responsivo para pantallas menores a 768px */
+  @media (max-width: 768px) {
+    h1, p, .times-won {
+      display: none;
+    }
+  
+    body {
+      transform: rotate(90deg);
+      width: 100vh;
+      height: 100vw;
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+    }
+  
+    canvas {
+      width: 100vh;
+      height: 100vw;
+      transform: rotate(-90deg);
+      margin-top: 0;
+    }
+  
+    .score {
+      font-size: 1.2rem;
+      margin-top: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  
