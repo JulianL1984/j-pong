@@ -38,14 +38,15 @@ body {
     color: rgb(51, 255, 0); /* Color verde */
     text-align: center;
     margin-top: 5px;
-}
-
-.times-won {
+  }
+  
+  .times-won {
     font-size: 10px;
     color: red; /* Color rojo */
     text-align: center;
     margin-top: 5px;
-}
+  }
+  
   /* Estilo para el canvas (zona de juego) */
   canvas {
     margin: 6px;      /* Margen de 6px alrededor del canvas */
@@ -53,29 +54,21 @@ body {
     background-color: #000; /* Fondo negro en el canvas */
   }
   
-  /* Estilo para el mensaje de fin de juego 
-  .fin-juego {
-    font-size: 30px;
-    color: yellow;
-    background-color: black;
-    padding: 10px;
-    border-radius: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
-    text-align: center;
-  }*/
+  /* Ajuste responsivo para pantallas mayores a 768px */
+  @media (min-width: 768px) {
+    .virtual-controls {
+      display: none; /* Ocultar controles virtuales en pantallas grandes */
+    }
+  }
   
   /* Ajuste responsivo para pantallas menores a 768px */
   @media (max-width: 768px) {
     h1, p, .times-won {
-      display: none;
+      display: none; /* Ocultar título, párrafos y victorias */
     }
   
     body {
-      transform: rotate(90deg);
+      transform: rotate(90deg); /* Rotar el contenido del body */
       width: 100vh;
       height: 100vw;
       position: absolute;
@@ -87,7 +80,7 @@ body {
     canvas {
       width: 100vh;
       height: 100vw;
-      transform: rotate(-90deg);
+      transform: rotate(-90deg); /* Rotar el canvas */
       margin-top: 0;
     }
   
@@ -98,6 +91,31 @@ body {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+    }
+  
+    /* Controles virtuales */
+    .virtual-controls {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+    }
+  
+    .control-button {
+      background-color: rgba(255, 255, 255, 0.5);
+      border: none;
+      padding: 15px;
+      font-size: 20px;
+      color: black;
+      cursor: pointer;
+      width: 30%;
+      text-align: center;
+    }
+  
+    .control-button:active {
+      background-color: rgba(255, 255, 255, 0.8);
     }
   }
   
