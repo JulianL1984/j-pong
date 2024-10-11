@@ -151,34 +151,36 @@ function moverPaletas() {
   paletaDer.y = Math.max(0, Math.min(canvas.height - paletaDer.height, paletaDer.y));
 }
 
-// Controles táctiles y virtuales
+// Controles táctiles para mover la paleta izquierda en pantallas pequeñas
 canvas.addEventListener("touchmove", (e) => {
   let touch = e.touches[0];
-  paletaIzq.y = touch.clientY - paletaIzq.height / 2;
+  let relativeY = touch.clientY - canvas.getBoundingClientRect().top;
+  
+  if (relativeY > 0 && relativeY < canvas.height) {
+    paletaIzq.y = relativeY - paletaIzq.height / 2;
+  }
 });
 
-// Controles virtuales para pantallas táctiles pequeñas
-document.querySelector('.btn-up').addEventListener('touchstart', () => {
-  paletaIzq.dy = -4;
-});
-document.querySelector('.btn-up').addEventListener('touchend', () => {
-  paletaIzq.dy = 0;
-});
-document.querySelector('.btn-down').addEventListener('touchstart', () => {
-  paletaIzq.dy = 4;
-});
-document.querySelector('.btn-down').addEventListener('touchend', () => {
-  paletaIzq.dy = 0;
+// Pausar/iniciar el juego con un toque en pantallas pequeñas
+canvas.addEventListener("touchstart", (e) => {
+  if (window.innerWidth < 768) {
+    juegoPausado = !juegoPausado;
+    if (juegoPausado) {
+      sonidoPause.play();
+    }
+  }
 });
 
-// Teclas para movimiento
+// Controles con teclado para pantallas grandes
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowUp") paletaIzq.dy = -4;
   if (e.key === "ArrowDown") paletaIzq.dy = 4;
   if (e.key === " ") {
-    juegoPausado = !juegoPausado;
-    if (juegoPausado) {
-      sonidoPause.play();
+    if (window.innerWidth >= 768) {
+      juegoPausado = !juegoPausado;
+      if (juegoPausado) {
+        sonidoPause.play();
+      }
     }
   }
 });
