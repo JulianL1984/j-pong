@@ -151,15 +151,7 @@ function moverPaletas() {
   paletaDer.y = Math.max(0, Math.min(canvas.height - paletaDer.height, paletaDer.y));
 }
 
-// Iniciar o pausar el juego
-function toggleJuego() {
-  juegoPausado = !juegoPausado;
-  if (juegoPausado) {
-    sonidoPause.play();
-  }
-}
-
-// Controles táctiles para pantallas menores a 768px
+// Controles táctiles y virtuales
 document.querySelector('.btn-up').addEventListener('touchstart', () => {
   paletaIzq.dy = -4;
 });
@@ -173,11 +165,20 @@ document.querySelector('.btn-down').addEventListener('touchend', () => {
   paletaIzq.dy = 0;
 });
 
-// Teclas para movimiento en pantallas más grandes
+// Controles del teclado (solo para escritorio)
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowUp") paletaIzq.dy = -4;
   if (e.key === "ArrowDown") paletaIzq.dy = 4;
-  if (e.key === " ") toggleJuego(); // Pausar/iniciar con la tecla espacio
+  if (e.key === " ") {
+    juegoPausado = !juegoPausado;
+    if (juegoPausado) {
+      sonidoPause.play();
+    }
+  }
+});
+
+document.addEventListener("keyup", (e) => {
+  if (e.key === "ArrowUp" || e.key === "ArrowDown") paletaIzq.dy = 0;
 });
 
 // Actualizar marcadores
