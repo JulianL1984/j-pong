@@ -25,7 +25,7 @@ let paletaDer = {
   y: canvas.height / 2 - 40,
   width: 10,
   height: 80,
-  dy: 0
+  dy: 5
 };
 
 // Puntuaciones y victorias
