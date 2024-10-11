@@ -14,18 +14,18 @@ let pelota = {
 
 let paletaIzq = {
   x: 10,
-  y: canvas.height / 2 - 50,
+  y: canvas.height / 2 - 40,
   width: 10,
-  height: 70,
+  height: 80,
   dy: 0
 };
 
 let paletaDer = {
   x: canvas.width - 20,
-  y: canvas.height / 2 - 50,
+  y: canvas.height / 2 - 40,
   width: 10,
-  height: 70,
-  dy: 4
+  height: 80,
+  dy: 0
 };
 
 // Puntuaciones y victorias
@@ -44,6 +44,9 @@ const sonidoHit = new Audio('sounds/hit.mp3');
 const sonidoPause = new Audio('sounds/pause.mp3');
 const sonidoGol = new Audio('sounds/gol.mp3');
 const sonidoWin = new Audio('sounds/win.mp3');
+
+// Detectar si la pantalla es menor a 768px
+const esPantallaPequena = window.matchMedia("(max-width: 768px)").matches;
 
 // Función para dibujar la pelota
 function dibujarPelota() {
@@ -151,36 +154,50 @@ function moverPaletas() {
   paletaDer.y = Math.max(0, Math.min(canvas.height - paletaDer.height, paletaDer.y));
 }
 
-// Controles táctiles para mover la paleta izquierda en pantallas pequeñas
-canvas.addEventListener("touchmove", (e) => {
-  let touch = e.touches[0];
-  let relativeY = touch.clientY - canvas.getBoundingClientRect().top;
-  
-  if (relativeY > 0 && relativeY < canvas.height) {
-    paletaIzq.y = relativeY - paletaIzq.height / 2;
-  }
-});
+// Controles táctiles y virtuales
+if (esPantallaPequena) {
+  // Ajustar las paletas y la velocidad de la pelota para pantallas pequeñas
+  paletaIzq.height = 50; // Reducir el tamaño de la paleta izquierda
+  paletaDer.height = 50; // Reducir el tamaño de la paleta derecha
+  pelota.dx = 4;
+  pelota.dy = 4;
 
-// Pausar/iniciar el juego con un toque en pantallas pequeñas
-canvas.addEventListener("touchstart", (e) => {
-  if (window.innerWidth < 768) {
-    juegoPausado = !juegoPausado;
-    if (juegoPausado) {
-      sonidoPause.play();
-    }
-  }
-});
+  // Mostrar controles táctiles
+  document.querySelector('.btn-up').style.display = 'block';
+  document.querySelector('.btn-down').style.display = 'block';
 
-// Controles con teclado para pantallas grandes
+  // Controles táctiles para la paleta izquierda
+  canvas.addEventListener("touchmove", (e) => {
+    let touch = e.touches[0];
+    paletaIzq.y = touch.clientY - paletaIzq.height / 2;
+  });
+
+  document.querySelector('.btn-up').addEventListener('touchstart', () => {
+    paletaIzq.dy = -4;
+  });
+  document.querySelector('.btn-up').addEventListener('touchend', () => {
+    paletaIzq.dy = 0;
+  });
+  document.querySelector('.btn-down').addEventListener('touchstart', () => {
+    paletaIzq.dy = 4;
+  });
+  document.querySelector('.btn-down').addEventListener('touchend', () => {
+    paletaIzq.dy = 0;
+  });
+} else {
+  // Para pantallas grandes, ocultar los controles táctiles
+  document.querySelector('.btn-up').style.display = 'none';
+  document.querySelector('.btn-down').style.display = 'none';
+}
+
+// Teclas para movimiento
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowUp") paletaIzq.dy = -4;
   if (e.key === "ArrowDown") paletaIzq.dy = 4;
   if (e.key === " ") {
-    if (window.innerWidth >= 768) {
-      juegoPausado = !juegoPausado;
-      if (juegoPausado) {
-        sonidoPause.play();
-      }
+    juegoPausado = !juegoPausado;
+    if (juegoPausado) {
+      sonidoPause.play();
     }
   }
 });
