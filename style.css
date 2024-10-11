@@ -49,7 +49,7 @@ p {
 
 /* Estilo para el canvas (zona de juego) */
 canvas {
-  margin: 6px;      /* Margen de 6px alrededor del canvas */
+  margin: 6px; /* Margen de 6px alrededor del canvas */
   border: 2px solid white; /* Borde blanco de 2px alrededor del canvas */
   background-color: #000; /* Fondo negro en el canvas */
 }
@@ -57,85 +57,64 @@ canvas {
 /* Ajuste responsivo para pantallas mayores a 768px */
 @media (min-width: 768px) {
   .virtual-controls {
-      display: none; /* Ocultar controles virtuales en pantallas grandes */
+    display: none; /* Ocultar controles virtuales en pantallas grandes */
   }
 }
 
 /* Ajuste responsivo para pantallas menores a 768px */
 @media (max-width: 768px) {
   h1, p, .times-won {
-      display: none; /* Ocultar título, párrafos y victorias */
+    display: none; /* Ocultar título, párrafos y victorias */
   }
 
   body {
-      transform: rotate(90deg); /* Rotar el contenido del body */
-      width: 100vh;
-      height: 100vw;
-      position: absolute;
-      top: 0;
-      left: 0;
-      overflow: hidden;
+    transform: rotate(90deg); /* Rotar el contenido del body */
+    width: 100vh;
+    height: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
   }
 
   canvas {
-      width: 100vh;
-      height: 100vw;
-      transform: rotate(-90deg); /* Rotar el canvas */
-      margin-top: 0;
+    width: 100vh;
+    height: 100vw;
+    transform: rotate(-90deg); /* Rotar el canvas */
+    margin-top: 0;
   }
 
   .score {
-      font-size: 1.2rem;
-      margin-top: 0;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+    margin-top: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   /* Controles virtuales */
   .virtual-controls {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      position: absolute;
-      bottom: 20px;
-      left: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
   }
 
   .control-button {
-      background-color: rgba(255, 255, 255, 0.5);
-      border: none;
-      padding: 15px;
-      font-size: 20px;
-      color: black;
-      cursor: pointer;
-      width: 30%;
-      text-align: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    padding: 15px;
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+    width: 30%;
+    text-align: center;
   }
 
   .control-button:active {
-      background-color: rgba(255, 255, 255, 0.8);
-  }
-
-  /* Asegurarse de que los botones sean visibles en pantallas pequeñas */
-  .btn-up, .btn-down {
-      display: block; /* Mostrar los controles virtuales en pantallas pequeñas */
-      position: absolute;
-      bottom: 10px;
-      width: 40%;
-      left: 50%;
-      transform: translateX(-50%);
-  }
-
-  /* Botones de control táctiles */
-  .btn-up {
-      bottom: 70px; /* Distancia superior al borde */
-      background-color: rgba(255, 255, 255, 0.7);
-  }
-
-  .btn-down {
-      bottom: 10px;
-      background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
   }
 }
