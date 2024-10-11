@@ -14,18 +14,18 @@ let pelota = {
 
 let paletaIzq = {
   x: 10,
-  y: canvas.height / 2 - 40,
+  y: canvas.height / 2 - 50,
   width: 10,
-  height: 80,
+  height: 70,
   dy: 0
 };
 
 let paletaDer = {
   x: canvas.width - 20,
-  y: canvas.height / 2 - 40,
+  y: canvas.height / 2 - 50,
   width: 10,
-  height: 80,
-  dy: 5
+  height: 70,
+  dy: 4
 };
 
 // Puntuaciones y victorias
@@ -44,9 +44,6 @@ const sonidoHit = new Audio('sounds/hit.mp3');
 const sonidoPause = new Audio('sounds/pause.mp3');
 const sonidoGol = new Audio('sounds/gol.mp3');
 const sonidoWin = new Audio('sounds/win.mp3');
-
-// Detectar si la pantalla es menor a 768px
-const esPantallaPequena = window.matchMedia("(max-width: 768px)").matches;
 
 // Función para dibujar la pelota
 function dibujarPelota() {
@@ -154,56 +151,33 @@ function moverPaletas() {
   paletaDer.y = Math.max(0, Math.min(canvas.height - paletaDer.height, paletaDer.y));
 }
 
-// Controles táctiles y virtuales
-if (esPantallaPequena) {
-  // Ajustar las paletas y la velocidad de la pelota para pantallas pequeñas
-  paletaIzq.height = 50; // Reducir el tamaño de la paleta izquierda
-  paletaDer.height = 50; // Reducir el tamaño de la paleta derecha
-  pelota.dx = 4;
-  pelota.dy = 4;
-
-  // Mostrar controles táctiles
-  document.querySelector('.btn-up').style.display = 'block';
-  document.querySelector('.btn-down').style.display = 'block';
-
-  // Controles táctiles para la paleta izquierda
-  canvas.addEventListener("touchmove", (e) => {
-    let touch = e.touches[0];
-    paletaIzq.y = touch.clientY - paletaIzq.height / 2;
-  });
-
-  document.querySelector('.btn-up').addEventListener('touchstart', () => {
-    paletaIzq.dy = -4;
-  });
-  document.querySelector('.btn-up').addEventListener('touchend', () => {
-    paletaIzq.dy = 0;
-  });
-  document.querySelector('.btn-down').addEventListener('touchstart', () => {
-    paletaIzq.dy = 4;
-  });
-  document.querySelector('.btn-down').addEventListener('touchend', () => {
-    paletaIzq.dy = 0;
-  });
-} else {
-  // Para pantallas grandes, ocultar los controles táctiles
-  document.querySelector('.btn-up').style.display = 'none';
-  document.querySelector('.btn-down').style.display = 'none';
+// Iniciar o pausar el juego
+function toggleJuego() {
+  juegoPausado = !juegoPausado;
+  if (juegoPausado) {
+    sonidoPause.play();
+  }
 }
 
-// Teclas para movimiento
+// Controles táctiles para pantallas menores a 768px
+document.querySelector('.btn-up').addEventListener('touchstart', () => {
+  paletaIzq.dy = -4;
+});
+document.querySelector('.btn-up').addEventListener('touchend', () => {
+  paletaIzq.dy = 0;
+});
+document.querySelector('.btn-down').addEventListener('touchstart', () => {
+  paletaIzq.dy = 4;
+});
+document.querySelector('.btn-down').addEventListener('touchend', () => {
+  paletaIzq.dy = 0;
+});
+
+// Teclas para movimiento en pantallas más grandes
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowUp") paletaIzq.dy = -4;
   if (e.key === "ArrowDown") paletaIzq.dy = 4;
-  if (e.key === " ") {
-    juegoPausado = !juegoPausado;
-    if (juegoPausado) {
-      sonidoPause.play();
-    }
-  }
-});
-
-document.addEventListener("keyup", (e) => {
-  if (e.key === "ArrowUp" || e.key === "ArrowDown") paletaIzq.dy = 0;
+  if (e.key === " ") toggleJuego(); // Pausar/iniciar con la tecla espacio
 });
 
 // Actualizar marcadores
