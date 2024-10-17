@@ -9,14 +9,14 @@ let pelota = {
   radio: 30,
   dx: 4 * 1.5,
   dy: 4 * 1.5,
-  angulo: 0
+  angulo: 30
 };
 
 let paletaIzq = {
   x: 10,
   y: canvas.height / 2 - 50,
   width: 10,
-  height: 70,
+  height: 90,
   dy: 0
 };
 
@@ -24,8 +24,8 @@ let paletaDer = {
   x: canvas.width - 20,
   y: canvas.height / 2 - 50,
   width: 10,
-  height: 70,
-  dy: 4
+  height: 90,
+  dy: 5
 };
 
 // Puntuaciones y victorias
