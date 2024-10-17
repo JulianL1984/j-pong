@@ -6,10 +6,10 @@ const ctx = canvas.getContext("2d");
 let pelota = {
   x: canvas.width / 2,
   y: canvas.height / 2,
-  radio: 30,
+  radio: 45,
   dx: 4 * 1.5,
   dy: 4 * 1.5,
-  angulo: 30
+  angulo: 0
 };
 
 let paletaIzq = {
@@ -54,12 +54,17 @@ function dibujarPelota() {
   ctx.restore();
 }
 
-// Función para dibujar las paletas
+// Función para dibujar las paletas 
 function dibujarPaletas() {
-  ctx.fillStyle = "#FFFFFF";
+  // Dibuja la paleta izquierda en color azul
+  ctx.fillStyle = "blue";
   ctx.fillRect(paletaIzq.x, paletaIzq.y, paletaIzq.width, paletaIzq.height);
+  
+  // Dibuja la paleta derecha en color rojo
+  ctx.fillStyle = "red";
   ctx.fillRect(paletaDer.x, paletaDer.y, paletaDer.width, paletaDer.height);
 }
+
 
 // Mover la pelota
 function moverPelota() {
