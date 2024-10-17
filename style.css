@@ -6,23 +6,23 @@ body {
   justify-content: center;
   height: 100vh;
   margin: 0;
-  background-image: url('assets/imagen1.png'); /* Fondo del espacio de juego */
+  background-image: url('assets/imagen1.jpg'); /* Fondo del espacio de juego */
   background-size: cover;
   background-position: center;
-  color: Violet;
-  font-family: 'Press Start 2P', system-ui;
+  color: rgb(234, 255, 47);
+  font-family: 'Star Wars', sans-serif;
   text-align: center;
 }
 
 /* Estilo para el título */
 h1 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 
 /* Estilo para los párrafos */
 p {
-  font-size: 1rem;
-  margin-top: 5px;
+  font-size: 1.3rem;
+  margin-top: 2px;
 }
 
 /* Contenedor para los marcadores */
@@ -30,21 +30,21 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 2px;
 }
 
 .score {
-  font-size: 20px;
+  font-size: 25px;
   color: rgb(51, 255, 0); /* Color verde */
   text-align: center;
-  margin-top: 5px;
+  margin-top: 2px;
 }
 
 .times-won {
-  font-size: 10px;
+  font-size: 20px;
   color: red; /* Color rojo */
   text-align: center;
-  margin-top: 5px;
+  margin-top: 2px;
 }
 
 /* Estilo para el canvas (zona de juego) */
